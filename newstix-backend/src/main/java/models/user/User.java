@@ -32,7 +32,7 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.language = Language.ENGLISH;
+        this.language = Language.EN;
         this.country = Country.US;
         this.category = Category.POLITICS;
         this.timeframe = "";

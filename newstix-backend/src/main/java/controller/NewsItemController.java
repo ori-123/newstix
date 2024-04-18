@@ -24,7 +24,7 @@ public class NewsItemController {
     @GetMapping("/news")
     public List<NewsItem> getNews(@RequestParam String language, @RequestParam String country, @RequestParam String category) {
         String apiUrl = "https://newsdata.io/api/1/news";
-        String apiKeyParam = "?api_key=" + apiKey;
+        String apiKeyParam = "?apikey=" + apiKey;
         String queryParams = "&language=" + language + "&country=" + country + "&category=" + category;
         String url = apiUrl + apiKeyParam + queryParams;
 
