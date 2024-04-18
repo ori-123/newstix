@@ -16,13 +16,13 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private Set<Language> languages;
+    private Language language;
 
     @Enumerated(EnumType.STRING)
-    private Set<Country> countries;
+    private Country country;
 
     @Enumerated(EnumType.STRING)
-    private Set<Category> categories;
+    private Category category;
     private String timeframe;
 
     public User() {
@@ -32,11 +32,9 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.languages = Set.of(Language.ENGLISH, Language.GERMAN, Language.HUNGARIAN, Language.ITALIAN, Language.FRENCH);
-        this.countries = Set.of(Country.AUSTRALIA, Country.AUSTRIA, Country.FRANCE, Country.BELGIUM, Country.CANADA, Country.GERMANY, Country.HUNGARY,
-                Country.INDIA, Country.IRELAND, Country.ITALY, Country.SWITZERLAND, Country.UK, Country.US);
-        this.categories = Set.of(Category.BUSINESS, Category.LIFESTYLE, Category.SPORTS, Category.ENTERTAINMENT, Category.CRIME,
-                Category.POLITICS, Category.TECHNOLOGY);
+        this.language = Language.ENGLISH;
+        this.country = Country.US;
+        this.category = Category.POLITICS;
         this.timeframe = "";
     }
 
@@ -52,16 +50,16 @@ public class User {
         return password;
     }
 
-    public Set<Language> getLanguages() {
-        return Set.copyOf(languages);
+    public Language getLanguage() {
+        return language;
     }
 
-    public Set<Country> getCountries() {
-        return Set.copyOf(countries);
+    public Country getCountry() {
+        return country;
     }
 
-    public Set<Category> getCategories() {
-        return Set.copyOf(categories);
+    public Category getCategory() {
+        return category;
     }
 
     public String getTimeframe() {
@@ -72,27 +70,15 @@ public class User {
         this.timeframe = timeframe;
     }
 
-    public void addCategory(Category category) {
-        categories.add(category);
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
-    public void removeCategory(Category category) {
-        categories.remove(category);
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
-    public void addCountry(Country country) {
-        countries.add(country);
-    }
-
-    public void removeCountry(Country country) {
-        countries.remove(country);
-    }
-
-    public void addLanguage(Language language) {
-        languages.add(language);
-    }
-
-    public void removeLanguage(Language language) {
-        languages.remove(language);
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
