@@ -81,4 +81,8 @@ public class User {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
