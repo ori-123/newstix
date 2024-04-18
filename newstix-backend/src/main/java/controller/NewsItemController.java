@@ -29,6 +29,7 @@ public class NewsItemController {
         String url = apiUrl + apiKeyParam + queryParams;
 
         NewsItem[] newsItems = restTemplate.getForObject(url, NewsItem[].class);
+        assert newsItems != null;
         return List.of(newsItems);
     }
 }
