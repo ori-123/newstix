@@ -6,7 +6,7 @@
   </a>
   </p>
 
-## About The Project
+<h2 id="about-the-project">About The Project</h2>
 
 NewsTix will be a lightweight news aggregator website similar for example to Google News, where users will be able to follow the
 news sources of their choice and according to their preferences (such as language, subject category, country and so on). 
@@ -16,21 +16,42 @@ Spring Security) to register, authenticate and authorize users and serve them ne
 
 Next steps include introduction of site administrators (superusers) and a nice frontend.
 
-### Built With
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#implemented-features">Implemented features</a></li>
+        <li><a href="#in-progress">In progress</a></li>
+      </ul>
+    </li>
+     <li>
+       <a href="#getting-started">Getting Started</a>
+      <ul>
+      <li><a href="#prerequisites">Prerequisites</a></li>
+     </li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contact-author">Contact Author</a></li>
+  </ol>
+</details>
+
+<h3 id="built-with">Built With</h3>
 
 * [![Java][Java]][Java-url]
 * [![Spring][Spring]][Spring-url]
 * [![MySQL][MySQL]][MySQL-url]
 
-## Getting Started
+<h2 id="getting-started">Getting Started</h2>
 
 The project can currently be run in developer mode. Install Maven dependencies and execute application class.
 
-### Prerequisites
+<h3 id="prerequisites">Prerequisites</h3>
 
 * [Java Development Kit 17 or higher][JDK17-url]
 
-## Implemented features
+<h2 id="implemented-features">Implemented features</h2>
 
 ### Backend:
 
@@ -41,12 +62,12 @@ The project can currently be run in developer mode. Install Maven dependencies a
 5. News item fetch from Web API
 6. Error messages
 
-## In progress
+<h2 id="in-progress">In progress</h2>
 
 1. Frontend
 2. User administrator role
 
-## Contributing
+<h2 id="contributing">Contributing</h2>
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any
 contributions you make are **greatly appreciated**.
@@ -59,7 +80,7 @@ If you have a suggestion that would make this application better, please fork th
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## Contact Author
+<h2 id="contact-author">Contact Author</h2>
 
 ### Oresztész Fokasz (Ori)
 
