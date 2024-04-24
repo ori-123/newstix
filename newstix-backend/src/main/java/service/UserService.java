@@ -2,8 +2,9 @@ package service;
 
 import jakarta.transaction.Transactional;
 import models.user.User;
+import models.user.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import repository.UserRepository;
 
@@ -13,10 +14,10 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -53,5 +54,13 @@ public class UserService {
     @Transactional
     public User saveUser(User user) {
         return userRepository.save(user);
+    }
+
+    public void addRoleFor(Long userId, UserRole role) {
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.addRole(role);
+        userRepository.save(user);
     }
 }

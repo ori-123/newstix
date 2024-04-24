@@ -1,6 +1,7 @@
 package controller;
 
 import models.user.User;
+import models.user.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,10 +53,19 @@ public class UserController {
             user.setCountry(updatedUser.getCountry());
             user.setCategory(updatedUser.getCategory());
             user.setTimeframe(updatedUser.getTimeframe());
+
             User savedUser = userService.saveUser(user);
             return new ResponseEntity<>(savedUser, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PutMapping("/{userId}/addRole")
+    public ResponseEntity<User> addRoleToUser(@PathVariable Long userId, @RequestParam UserRole role) {
+        userService.addRoleFor(userId, role);
+        User updatedUser = userService.getUserById(userId);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
 }
+

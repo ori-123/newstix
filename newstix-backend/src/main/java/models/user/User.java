@@ -2,6 +2,7 @@ package models.user;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,6 +15,10 @@ public class User {
     private String username;
 
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(fetch = FetchType.EAGER)
+    private final Set<UserRole> roles = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     private Language language;
@@ -32,6 +37,7 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.roles.add(UserRole.USER);
         this.language = Language.EN;
         this.country = Country.US;
         this.category = Category.POLITICS;
@@ -84,5 +90,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void addRole(UserRole role) {
+        roles.add(role);
+    }
+
+    public Set<UserRole> getRoles() {
+        return roles;
     }
 }
