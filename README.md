@@ -43,6 +43,8 @@ Next steps include introduction of site administrators (superusers) and a nice f
 * [![Spring][Spring]][Spring-url]
 * [![MySQL][MySQL]][MySQL-url]
 
+<p align="right">(<a href="#about-the-project">back to top</a>)</p>
+
 <h2 id="getting-started">Getting Started</h2>
 
 The project can currently be run in developer mode. Install Maven dependencies and execute application class.
@@ -50,6 +52,8 @@ The project can currently be run in developer mode. Install Maven dependencies a
 <h3 id="prerequisites">Prerequisites</h3>
 
 * [Java Development Kit 17 or higher][JDK17-url]
+
+<p align="right">(<a href="#about-the-project">back to top</a>)</p>
 
 <h2 id="implemented-features">Implemented features</h2>
 
@@ -62,10 +66,14 @@ The project can currently be run in developer mode. Install Maven dependencies a
 5. News item fetch from Web API
 6. Error messages
 
+<p align="right">(<a href="#about-the-project">back to top</a>)</p>
+
 <h2 id="in-progress">In progress</h2>
 
 1. Frontend
 2. User administrator role
+
+<p align="right">(<a href="#about-the-project">back to top</a>)</p>
 
 <h2 id="contributing">Contributing</h2>
 
@@ -80,6 +88,8 @@ If you have a suggestion that would make this application better, please fork th
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+<p align="right">(<a href="#about-the-project">back to top</a>)</p>
+
 <h2 id="contact-author">Contact Author</h2>
 
 ### Oresztész Fokasz (Ori)
@@ -87,6 +97,8 @@ If you have a suggestion that would make this application better, please fork th
 [![Github Pages]](https://github.com/ori-123/) 
 [![LinkedIn]](https://www.linkedin.com/in/ori-fokas/) 
 [![Gmail]](mailto:fokaszo@gmail.com)
+
+<p align="right">(<a href="#about-the-project">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
