@@ -41,7 +41,7 @@ Next steps include introduction of site administrators (superusers) and a nice f
 
 * [![Java][Java]][Java-url]
 * [![Spring][Spring]][Spring-url]
-* [![MySQL][MySQL]][MySQL-url]
+* [![PostgreSQL][PostgreSQL]][PostgreSQL-url]
 
 <p align="right">(<a href="#about-the-project">back to top</a>)</p>
 
@@ -106,8 +106,8 @@ If you have a suggestion that would make this application better, please fork th
 [Java-url]: https://www.java.com/en/
 [Spring]: https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white
 [Spring-url]: https://spring.io/
-[MySQL]: https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white
-[MySQL-url]: https://www.mysql.com/
+[PostgreSQL]: https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
+[PostgreSQL-url]: https://www.postgresql.org/
 [JDK17-url]: https://www.oracle.com/java/technologies/downloads/#java17
 [NewsTixLogo]: https://i.imgur.com/0jmRvev.png
 
