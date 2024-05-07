@@ -1,8 +1,11 @@
 package controller;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import models.user.User;
 import models.user.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +16,8 @@ import service.UserService;
 public class UserController {
 
     private final UserService userService;
+    @Value("${jwt.secret}")
+    private String jwtSecret;
 
     @Autowired
     public UserController(UserService userService) {
@@ -26,12 +31,18 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> loginUser(@RequestBody User user) {
+    public ResponseEntity<String> loginUser(@RequestBody User user) {
         User loggedInUser = userService.login(user.getUsername(), user.getPassword());
         if (loggedInUser != null) {
-            return new ResponseEntity<>(loggedInUser, HttpStatus.OK);
+            // Generate JWT token
+            String token = Jwts.builder()
+                    .setSubject(user.getUsername())
+                    .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                    .compact();
+            // Return JWT token and user details in response
+            return ResponseEntity.ok(token);
         } else {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
 

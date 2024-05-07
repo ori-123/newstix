@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import axios from 'axios';
-import User from "../../types/User";
 
 interface FormData {
   username: string,
@@ -16,8 +15,9 @@ const loginError = ref<string>('');
 
 async function login() {
   try {
-    await axios.post<User>('/api/users/login', formData.value);
-    // TODO: redirect to Dashboard
+    const response = await axios.post('/api/users/login', formData.value);
+    const token = response.data;
+    localStorage.setItem('token', token);
   } catch (error: any) {
     if (error.response && error.response.status === 401) {
       loginError.value = 'Invalid username or password.';
