@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import axios from 'axios';
+import router from "../router.ts";
 
 interface FormData {
   username: string,
@@ -18,6 +19,7 @@ async function login() {
     const response = await axios.post('/api/users/login', formData.value);
     const token = response.data;
     localStorage.setItem('token', token);
+    router.push('/dashboard');
   } catch (error: any) {
     if (error.response && error.response.status === 401) {
       loginError.value = 'Invalid username or password.';
