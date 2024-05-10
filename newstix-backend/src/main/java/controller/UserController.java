@@ -26,7 +26,8 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
-        User registeredUser = userService.register(user);
+        User newUser = new User(user.getUsername(), user.getPassword());
+        User registeredUser = userService.register(newUser);
         return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
     }
 
@@ -34,12 +35,10 @@ public class UserController {
     public ResponseEntity<String> loginUser(@RequestBody User user) {
         User loggedInUser = userService.login(user.getUsername(), user.getPassword());
         if (loggedInUser != null) {
-            // Generate JWT token
             String token = Jwts.builder()
                     .setSubject(user.getUsername())
                     .signWith(SignatureAlgorithm.HS512, jwtSecret)
                     .compact();
-            // Return JWT token and user details in response
             return ResponseEntity.ok(token);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
