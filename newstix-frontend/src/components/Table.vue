@@ -1,9 +1,17 @@
 <script setup lang="ts">
   import { ref, onMounted } from "vue";
+  import axios from "axios";
 
   const items = ref([]);
 
-  // TODO: get user in context somehow and fetch newsitems from the API
+  onMounted(async function fetchNews() {
+    try {
+      const response = await axios.get('http://localhost:8080/api/news');
+      items.value = response.data; // Extract the data from the response
+    } catch (error) {
+      console.error("Error fetching news: ", error);
+    }
+  });
 
 </script>
 
