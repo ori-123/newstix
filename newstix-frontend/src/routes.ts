@@ -1,27 +1,26 @@
-import App from "./App.vue";
-import Dashboard from "./components/Dashboard.vue";
+
 export const routes = [
     {
         path: '/',
         name: 'Main',
-        component: 'App'
+        component: () => import('./App.vue')
     },
     {
         path: '/login',
         name: 'Login',
-        component: 'App'
+        component: () => import('./App.vue')
     },
     {
         path: '/register',
         name: 'Register',
-        component: 'App'
+        component: () => import('./App.vue')
     },
     {
         path: '/dashboard',
         name: 'Dashboard',
-        component: 'Dashboard',
+        component: () => import('./components/Dashboard.vue'),
         meta: {
-            requireAuth: true
+            requiresAuth: true
         }
     }
 ];
