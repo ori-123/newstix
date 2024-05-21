@@ -21,7 +21,7 @@ public class NewsItemController {
         this.restTemplate = restTemplate;
     }
 
-    @GetMapping("/news")
+    @GetMapping("/api/news")
     public List<NewsItem> getNews(@RequestParam String language, @RequestParam String country, @RequestParam String category) {
         String apiUrl = "https://newsdata.io/api/1/news";
         String apiKeyParam = "?apikey=" + apiKey;
