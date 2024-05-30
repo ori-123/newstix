@@ -6,6 +6,7 @@ import Register from "./components/Register.vue";
 <template>
   <img src="https://i.imgur.com/0jmRvev.png" alt="Logo" width="230">
   <h1>Welcome to NewsTix!</h1>
+  <router-view />
   <Login />
   <br />
   <h2>Not already a member?</h2>

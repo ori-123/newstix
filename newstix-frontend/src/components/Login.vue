@@ -21,8 +21,10 @@ const router = useRouter();
     async function login() {
       try {
         const response = await axios.post('http://localhost:8080/api/users/login', formData.value);
-        const token = response.data;
+        const token = response.data.token;
+        const userId = response.data.id;
         localStorage.setItem('token', token);
+        localStorage.setItem('userID', userId);
         await router.push('/dashboard');
       } catch (error: any) {
         if (error.response && error.response.status === 401) {

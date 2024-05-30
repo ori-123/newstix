@@ -3,6 +3,7 @@ package controller;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import models.user.User;
+import models.user.UserDTO;
 import models.user.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,15 +32,18 @@ public class UserController {
         return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody User user) {
+    @PostMapping(value = "/login", produces = "application/json")
+    public ResponseEntity<?> loginUser(@RequestBody User user) {
         User loggedInUser = userService.login(user.getUsername(), user.getPassword());
         if (loggedInUser != null) {
             String token = Jwts.builder()
                     .setSubject(user.getUsername())
                     .signWith(SignatureAlgorithm.HS512, jwtSecret)
                     .compact();
-            return ResponseEntity.ok(token);
+
+            UserDTO userResponse = new UserDTO(loggedInUser.getId(), token);
+
+            return ResponseEntity.ok(userResponse);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }

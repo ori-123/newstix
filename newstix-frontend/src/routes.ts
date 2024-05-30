@@ -8,12 +8,12 @@ export const routes = [
     {
         path: '/login',
         name: 'Login',
-        component: () => import('./App.vue')
+        component: () => import('./components/Login.vue')
     },
     {
         path: '/register',
         name: 'Register',
-        component: () => import('./App.vue')
+        component: () => import('./components/Register.vue')
     },
     {
         path: '/dashboard',
