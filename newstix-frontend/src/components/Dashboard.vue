@@ -37,5 +37,5 @@ watch(user, (newUser) => {
 </template>
 
 <style scoped>
-/* Your styles here */
+
 </style>

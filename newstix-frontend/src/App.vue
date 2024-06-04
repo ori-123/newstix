@@ -1,19 +1,11 @@
-<script setup lang="ts">
-import Login from "./components/Login.vue";
-import Register from "./components/Register.vue";
-</script>
-
 <template>
-  <img src="https://i.imgur.com/0jmRvev.png" alt="Logo" width="230">
-  <h1>Welcome to NewsTix!</h1>
-  <router-view />
-  <Login />
-  <br />
-  <h2>Not already a member?</h2>
-  <h3>Register here:</h3>
-  <Register />
+  <router-view></router-view>
 </template>
 
-<style>
+<script setup lang="ts">
+
+</script>
+
+<style scoped>
 
 </style>

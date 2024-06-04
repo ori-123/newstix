@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
 import axios from "axios";
+import { BTable } from 'bootstrap-vue-next';
 
 const props = defineProps({
   user: {
@@ -35,7 +36,6 @@ const fetchNews = async () => {
 };
 
 onMounted(fetchNews);
-watch(props.user, fetchNews);
 
 </script>
 
