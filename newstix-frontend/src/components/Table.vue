@@ -1,9 +1,41 @@
 <script setup lang="ts">
-  import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
+import axios from "axios";
+import { BTable } from 'bootstrap-vue-next';
 
-  const items = ref([]);
+const props = defineProps({
+  user: {
+    type: Object,
+    required: true,
+    default: () => ({
+      language: 'en',
+      country: 'us',
+      category: 'politics'
+    })
+  }
+});
 
-  // TODO: get user in context somehow and fetch newsitems from the API
+const items = ref([]);
+
+const fetchNews = async () => {
+  if (props.user) {
+    try {
+      const { language, country, category } = props.user;
+      const response = await axios.get(`http://localhost:8080/api/news`, {
+        params: {
+          language,
+          country,
+          category
+        }
+      });
+      items.value = response.data;
+    } catch (error) {
+      console.error("Error fetching news: ", error);
+    }
+  }
+};
+
+onMounted(fetchNews);
 
 </script>
 
@@ -14,5 +46,5 @@
 </template>
 
 <style scoped>
-
+/* Your styles here */
 </style>

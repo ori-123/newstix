@@ -1,6 +1,7 @@
 package controller;
 
 import models.news.NewsItem;
+import models.news.NewsResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,15 +22,13 @@ public class NewsItemController {
         this.restTemplate = restTemplate;
     }
 
-    @GetMapping("/news")
+    @GetMapping("/api/news")
     public List<NewsItem> getNews(@RequestParam String language, @RequestParam String country, @RequestParam String category) {
         String apiUrl = "https://newsdata.io/api/1/news";
-        String apiKeyParam = "?apikey=" + apiKey;
-        String queryParams = "&language=" + language + "&country=" + country + "&category=" + category;
-        String url = apiUrl + apiKeyParam + queryParams;
+        String url = String.format("%s?apikey=%s&language=%s&country=%s&category=%s",
+                apiUrl, apiKey, language, country, category);
 
-        NewsItem[] newsItems = restTemplate.getForObject(url, NewsItem[].class);
-        assert newsItems != null;
-        return List.of(newsItems);
+        NewsResponse response = restTemplate.getForObject(url, NewsResponse.class);
+        return response != null ? response.getResults() : List.of();
     }
 }

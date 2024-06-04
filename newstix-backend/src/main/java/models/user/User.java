@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Table(name = "users")
 @Entity
 public class User {
     @Id

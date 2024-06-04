@@ -1,30 +1,5 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-
-import Login from "./components/Login.vue";
-import Register from "./components/Register.vue";
-import Dashboard from "./components/Dashboard.vue";
-
-const routes: RouteRecordRaw[] = [
-    {
-        path: '/',
-        redirect: '/login'
-    },
-    {
-        path: '/login',
-        name: 'Login',
-        component: Login
-    },
-    {
-        path: '/register',
-        name: 'Register',
-        component: Register
-    },
-    {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: Dashboard
-    }
-];
+import { createRouter, createWebHistory } from 'vue-router';
+import { routes } from './routes';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -33,6 +8,7 @@ const router = createRouter({
 
 router.beforeEach((to, _, next) => {
     const isAuthenticated = !!localStorage.getItem('token');
+    console.log(`Navigating to ${to.path}, requiresAuth: ${to.meta.requiresAuth}, isAuthenticated: ${isAuthenticated}`);
     if (to.meta.requiresAuth && !isAuthenticated) {
         next('/login');
     } else {
