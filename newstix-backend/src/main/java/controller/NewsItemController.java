@@ -29,6 +29,6 @@ public class NewsItemController {
                 apiUrl, apiKey, language, country, category);
 
         NewsResponse response = restTemplate.getForObject(url, NewsResponse.class);
-        return response != null ? response.results() : List.of();
+        return response != null ? response.getResults() : List.of();
     }
 }
