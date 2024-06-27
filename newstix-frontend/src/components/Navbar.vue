@@ -9,7 +9,6 @@ import {
   BNavForm,
   BFormInput,
   BButton,
-  BAvatar,
   BNavItemDropdown,
   BDropdownItem
 } from 'bootstrap-vue-next';
@@ -54,7 +53,9 @@ async function deleteAccount() {
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#">Personalize Feed</b-nav-item>
+          <router-link to="/preferences">
+            <b-nav-item @click="$router.push('/preferences')">Personalize Feed</b-nav-item>
+          </router-link>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -63,8 +64,6 @@ async function deleteAccount() {
             <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
             <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
           </b-nav-form>
-
-          <b-avatar></b-avatar>
 
           <b-nav-item-dropdown right>
             <template #button-content>

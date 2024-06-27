@@ -16,6 +16,14 @@ export const routes = [
         component: () => import('./components/Register.vue')
     },
     {
+        path: '/preferences',
+        name: 'User Preferences',
+        component: () =>import('./components/PreferencesForm.vue'),
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: '/dashboard',
         name: 'Dashboard',
         component: () => import('./components/Dashboard.vue'),

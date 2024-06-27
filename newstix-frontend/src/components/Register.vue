@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import User from "../../types/User";
-import router from "../router.ts";
+import router from "../router";
 
 interface FormData {
   username: string,
@@ -18,7 +18,7 @@ const signUpError = ref<string>('');
 async function register() {
   try {
     await axios.post<User>('http://localhost:8080/api/users/register', formData.value);
-    router.push('/dashboard');
+    await router.push('/dashboard');
   } catch (error: any) {
       signUpError.value = 'An error occurred. Please try again later.';
   }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import axios from "axios";
 import { BTable } from 'bootstrap-vue-next';
 
@@ -8,9 +8,9 @@ const props = defineProps({
     type: Object,
     required: true,
     default: () => ({
-      language: 'en',
-      country: 'us',
-      category: 'politics'
+      language: 'EN',
+      country: 'US',
+      category: 'POLITICS'
     })
   }
 });
@@ -28,17 +28,14 @@ const fetchNews = async () => {
           category
         }
       });
-      console.log(response.data[0]);
       items.value = response.data.map((newsItem) => {
-        const formattedNewsItem = {
-          icon: `<img src="${newsItem.source_icon}" alt="icon" class="image-icon">`,
-          image: `<img src="${newsItem.image_url}" alt="image" class="news-image">`,
+        return {
+          icon: `<img src="${newsItem.source_icon}" alt="icon" class="image-icon" width="200">`,
+          image: `<img src="${newsItem.image_url}" alt="image" class="news-image" width="500">`,
           title: `<a href="${newsItem.link}">${newsItem.title}</a>`,
           summary: newsItem.description,
           published_at: newsItem.pubDate
-        }
-
-        return formattedNewsItem;
+        };
       });
     } catch (error) {
       console.error("Error fetching news: ", error);
@@ -47,6 +44,16 @@ const fetchNews = async () => {
 };
 
 onMounted(fetchNews);
+
+watch(
+    () => props.user,
+    (newUser, oldUser) => {
+      if (newUser.language !== oldUser.language || newUser.country !== oldUser.country || newUser.category !== oldUser.category) {
+        fetchNews();
+      }
+    },
+    { deep: true }
+);
 
 </script>
 

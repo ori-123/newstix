@@ -80,7 +80,6 @@ public class UserController {
             user.setLanguage(updatedUser.getLanguage());
             user.setCountry(updatedUser.getCountry());
             user.setCategory(updatedUser.getCategory());
-            user.setTimeframe(updatedUser.getTimeframe());
 
             User savedUser = userService.saveUser(user);
             return new ResponseEntity<>(savedUser, HttpStatus.OK);
