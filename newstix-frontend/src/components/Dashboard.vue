@@ -3,8 +3,18 @@ import { ref, onMounted, watch } from 'vue';
 import Table from "./Table.vue";
 import Navbar from "./Navbar.vue";
 import axios from "axios";
+import User from "../../types/User.ts";
+import { Category, Country, Language, UserRole } from "../../types/Enums.ts";
 
-const user = ref(null);
+const user = ref({
+  id: '1',
+  username: 'john_doe',
+  roles: [UserRole.USER],
+  language: Language.EN,
+  country: Country.US,
+  category: Category.POLITICS,
+  timeframe: ''
+});
 
 onMounted(async function fetchUser() {
   try {
@@ -23,13 +33,43 @@ onMounted(async function fetchUser() {
 
 watch(user, (newUser) => {
   console.log(newUser);
+  updateFrontendUser(newUser);
 });
+
+const frontendUser = ref(
+    new User(
+        user.value.id,
+        user.value.username,
+        '',
+        user.value.roles,
+        user.value.language,
+        user.value.country,
+        user.value.category,
+        user.value.timeframe
+    )
+);
+
+function updateFrontendUser(newUser: typeof user.value) {
+  frontendUser.value = new User(
+      newUser.id,
+      newUser.username,
+      '',
+      newUser.roles,
+      newUser.language,
+      newUser.country,
+      newUser.category,
+      newUser.timeframe
+  );
+}
+
+console.log("Frontend user: ", frontendUser);
+
 </script>
 
 <template>
-  <div v-if="user">
-    <Navbar :user="user.value"/>
-    <Table :user="user.value"/>
+  <div v-if="frontendUser">
+    <Navbar :user="frontendUser"/>
+    <Table :user="frontendUser"/>
   </div>
   <div v-else>
     Loading...
@@ -37,5 +77,5 @@ watch(user, (newUser) => {
 </template>
 
 <style scoped>
-
+/* Add your styles here */
 </style>

@@ -2,18 +2,11 @@
 import { ref, onMounted, watch } from "vue";
 import axios from "axios";
 import { BTable } from 'bootstrap-vue-next';
+import User from "../../types/User.ts";
 
-const props = defineProps({
-  user: {
-    type: Object,
-    required: true,
-    default: () => ({
-      language: 'EN',
-      country: 'US',
-      category: 'POLITICS'
-    })
-  }
-});
+const props = defineProps<{
+  user: User;
+}>();
 
 const items = ref([]);
 

@@ -1,14 +1,16 @@
 import {Category, Country, Language, UserRole} from "./Enums";
 
-interface User {
-    id?: number,
-    username: string,
-    password: string,
-    roles: UserRole,
-    language: Language,
-    country: Country,
-    category: Category,
-    timeframe: string
+class User {
+    constructor(
+        public id: string,
+        public username: string,
+        public password: string,
+        public roles: UserRole[],
+        public language: Language,
+        public country: Country,
+        public category: Category,
+        public timeframe: string
+    ) {}
 }
 
 export default User;
