@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import service.UserService;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -46,6 +48,18 @@ public class UserController {
             return ResponseEntity.ok(userResponse);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        }
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteUser(@RequestBody Map<String, Long> payload) {
+        Long id = payload.get("id");
+        User loggedInUser = userService.getUserById(id);
+        if (loggedInUser != null) {
+            userService.deleteUser(id);
+            return ResponseEntity.status(HttpStatus.OK).body("User deleted");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
 

@@ -13,6 +13,8 @@ import {
   BNavItemDropdown,
   BDropdownItem
 } from 'bootstrap-vue-next';
+import axios from "axios";
+import router from "../router.ts";
 
 const props = defineProps({
   user: {
@@ -25,6 +27,22 @@ const props = defineProps({
     })
   }
 });
+
+function logout() {
+  localStorage.clear();
+  router.push('/login');
+}
+
+async function deleteAccount() {
+  if (window.confirm("Are you sure you want to delete your account? This is irreversible!")) {
+    await axios.delete('http://localhost:8080/api/users/delete', {
+      data: { id: localStorage.getItem('userID') }
+    });
+    localStorage.clear();
+    await router.push('/register');
+  }
+}
+
 </script>
 
 <template>
@@ -52,8 +70,8 @@ const props = defineProps({
             <template #button-content>
               <em>User</em>
             </template>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-            <b-dropdown-item href="#">Delete Account</b-dropdown-item>
+            <b-dropdown-item @click="logout">Sign Out</b-dropdown-item>
+            <b-dropdown-item @click="deleteAccount">Delete Account</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>

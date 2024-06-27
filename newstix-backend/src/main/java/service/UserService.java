@@ -63,4 +63,8 @@ public class UserService {
         user.addRole(role);
         userRepository.save(user);
     }
+
+    public void deleteUser(long id) {
+        userRepository.deleteById(id);
+    }
 }
