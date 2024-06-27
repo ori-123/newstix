@@ -13,6 +13,18 @@ import {
   BNavItemDropdown,
   BDropdownItem
 } from 'bootstrap-vue-next';
+
+const props = defineProps({
+  user: {
+    type: Object,
+    required: true,
+    default: () => ({
+      language: 'en',
+      country: 'us',
+      category: 'politics'
+    })
+  }
+});
 </script>
 
 <template>
